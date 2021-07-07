@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu chuyện giữa Adam và Eva</title>
+</head>
+
+<body>
+    <script src="js/Apple.js"></script>
+    <script src="js/Human.js"></script>
+    <div id="say"></div>
+    <script>
+        let adam = new Human('Adam', 'male', 50);
+        let eva = new Human('Eva', 'female', 55);
+        let apple = new Apple();
+
+        let isAdamNext = true;
+
+        function set_Apple() {
+            if (!apple.isEmpty) {
+                if (isAdamNext) {
+                    adam.setApple(apple);
+                    adam.setWeight(++adam.weight);
+
+                    if (adam.checkApple(apple)) {
+                        adam.say('Hết táo rồi!');
+                        apple.isEmpty = true;
+                    } else {
+                        adam.say('Em ăn một miếng đi không anh ăn hết giờ!');
+                    }
+                    isAdamNext = false;
+                } else {
+                    eva.setApple(apple);
+                    eva.setWeight(++eva.weight);
+
+                    if (eva.checkApple(apple)) {
+                        eva.say("Hết táo rồi!")
+                        apple.isEmpty = true;
+                    } else {
+                        eva.say('Anh ăn một miếng đi không hết giờ!');
+                    }
+                    isAdamNext = true;
+                }
+            }
+        }
+        let t = setInterval(set_Apple, 1000);
+    </script>
+</body>
+
+</html>
